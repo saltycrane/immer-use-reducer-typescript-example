@@ -1,8 +1,3 @@
 # immer-use-reducer-typescript-example
 
-## Usage
-
-```
-$ npm install
-$ npm run dev
-```
+See [/pages/index.tsx](/pages/index.tsx)
