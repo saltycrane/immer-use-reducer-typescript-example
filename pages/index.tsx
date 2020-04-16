@@ -7,7 +7,8 @@ type State = number;
 // method 1 [OK]: basic reducer w/o immer
 const reducer1 = (state: State) => state;
 
-// method 2 [BAD]: immer reducer using immer's currying api
+// method 2 [OK]: immer reducer using immer's currying api
+// NOTE: in v3.1.3, this example produced bad TypeScript types, but in v6.0.3, it is fixed.
 const reducer2 = produce((draft: Draft<State>) => {
   draft + 1;
   return;
@@ -21,23 +22,24 @@ const reducer3 = (draft: Draft<State>) => {
 
 // method 4 [OK]: immer reducer without currying api
 const reducer4 = (state: State) =>
-  produce(state, draft => {
+  produce(state, (draft) => {
     draft + 1;
     return;
   });
 
 const Home = () => {
-  // [OK] state1 is correctly typed as `number`
+  // [OK] `state1` is correctly typed as `number`
   const [state1] = useReducer(reducer1, 0);
 
-  // [BAD] state2 is incorrectly typed as `any`
+  // [OK] `state2` is correctly typed as `number`
+  // NOTE: in v3.1.3, `state2` was incorrectly typed as `any`, but in v6.0.3, it is fixed.
   const [state2] = useReducer(reducer2, 0);
 
-  // [OK] state3 is correctly typed as `number`
+  // [OK] `state3` is correctly typed as `number`
   // because `useImmerReducer` sets the type of the return value
   const [state3] = useImmerReducer(reducer3, 0);
 
-  // [OK] state4 is correctly typed as `number`
+  // [OK] `state4` is correctly typed as `number`
   const [state4] = useReducer(reducer4, 0);
 
   return (
