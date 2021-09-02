@@ -12,7 +12,7 @@
     "@types/node": "^13.11.1",
     "@types/react": "^16.9.34",
     "@zeit/next-typescript": "^1.1.1",
-    "immer": "^6.0.3",
+    "immer": "^9.0.6",
     "next": "^9.3.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
